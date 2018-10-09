@@ -7,6 +7,12 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 # We probably don't want this to run on every build.
 option(COVERAGE "Generate Coverage Data" OFF)
 
+# Include OpenCV
+find_package(OpenCV REQUIRED)
+include_directories(
+    ${OpenCV_INCLUDE_DIRS}
+)
+
 if (COVERAGE)
     include(CodeCoverage)
     set(LCOV_REMOVE_EXTRA "'vendor/*'")

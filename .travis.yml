@@ -41,7 +41,7 @@ matrix:
 before_script:
   - git clone https://github.com/opencv/opencv.git
   - cd opencv
-  - git checkout 3.3.0
+  - git checkout 3.3.1
   - cd ..
 
   - git clone https://github.com/opencv/opencv_contrib.git

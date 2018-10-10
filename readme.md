@@ -1,14 +1,56 @@
 # Lane Detection System
 [![Build Status](https://travis-ci.org/rohithjayarajan/LaneDetectionSystem.svg?branch=master)](https://travis-ci.org/rohithjayarajan/LaneDetectionSystem)
 [![Coverage Status](https://coveralls.io/repos/github/rohithjayarajan/LaneDetectionSystem/badge.svg?branch=master)](https://coveralls.io/github/rohithjayarajan/LaneDetectionSystem?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 ---
 
 ## Overview
 
-Project to design a system for lane departure warning system for self-driving cars which include lane detection and steer prediction. A C++ project with:
+Project to design a system for lane departure warning system for self-driving cars which include lane detection and steer prediction. In this project, a monocular camera installed on the self driving vehicle serves as the input for the lane detecton system pipeline. After preprocessing of image frame, the segmented two lanes are used to fit curves describing the traffic lanes. Also this information is used to predict the steering angle of the vehicle. 
+A C++ project with:
 
 - cmake
 - googletest
+- OpenCV
+
+## License
+```
+MIT License
+
+Copyright (c) 2018 Rohith Jayarajan, Akash Guha
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of 
+this software and associated documentation files (the "Software"), to deal in 
+the Software without restriction, including without limitation the rights to 
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+of the Software, and to permit persons to whom the Software is furnished to do 
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE.
+```
+
+## Dependencies
+
+- [OpenCV][reference-id-for-OpenCV]: An Open Source Computer Vision Library released under a BSD license.
+A complete installation guide for OpenCV can be found [here][reference-id-for-here].
+
+[reference-id-for-OpenCV]: https://opencv.org/
+[reference-id-for-here]: https://docs.opencv.org/3.3.1/d7/d9f/tutorial_linux_install.html
+
+## Solo Iterative Process
+
+SIP is a software process that single programmers use while working on a software project. The solo programmer who is the hero of this process is named “Sol”. Sol receives the requirements from the users and records them in the product backlog. From the iteration backlog, Sol selects a specific change request and implements the corresponding software changes. Product Backlog, Work Log and Iteration Backlog for this project can be found [here][reference-id-for-here].
+
+[reference-id-for-here]: https://docs.google.com/spreadsheets/d/1b254fKUI1N3dCOtlsByfg0JyH0NWnpPUUpDtdTfVFeI/edit?usp=sharing
 
 ## Standard install via command-line
 ```

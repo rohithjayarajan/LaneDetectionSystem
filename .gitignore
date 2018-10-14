@@ -13,3 +13,8 @@ build/
 # Others
 .vscode
 .gitmodules
+.cproject
+.project
+.settings/
+
+

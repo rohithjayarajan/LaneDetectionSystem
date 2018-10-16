@@ -23,9 +23,9 @@
 
  *************************************************************************/
 /**
- *  Copyright 2018 Akash Guha, rohithjayarajan
+ *  Copyright 2018 rohithjayarajan, Akash Guha
  *  @file    LaneDetection.hpp
- *  @author  Akash Guha, rohithjayarajan
+ *  @author  rohithjayarajan, Akash Guha
  *  @date 10/13/2018
  *  @version 1.1
  *
@@ -48,9 +48,15 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 class LaneDetection {
  private:
+  int windowBuffer;
+  std::vector<int> avgRightCenter;
+  cv::Mat leftLaneCoeffs;
+  cv::Mat rightLaneCoeffs;
  public:
   /**
    *   @brief Default constructor for LaneDetection
@@ -65,7 +71,7 @@ class LaneDetection {
    *   @param nothing
    *   @return nothing
    */
-  ~LaneDetection();
+  virtual ~LaneDetection();
   /**
    *   @brief Function to generate lane pixel histogram
    *
@@ -73,7 +79,16 @@ class LaneDetection {
    *   @param histogram containing lane pixels of type cv::Mat
    *   @return nothing
    */
-  void generateHist(cv::Mat& src, cv::Mat& hist);
+  void generateHist(cv::Mat& src, std::vector<double>& hist);
+  /**
+   *   @brief Function to get average of window center
+   *
+   *   @param histogram containing lane pixels of type cv::Mat
+   *   @param pixel locations of left or right lane, type std::vector<cv::Point_<int>>
+   *   @param lane to be extracted - left or right of type string
+   *   @return nothing
+   */
+  int averageWindowCenter(int& xVal);
   /**
    *   @brief Function to extract left or right lane
    *
@@ -82,8 +97,9 @@ class LaneDetection {
    *   @param lane to be extracted - left or right of type string
    *   @return nothing
    */
-  void extractLane(cv::Mat& hist, std::vector<cv::Point_<int>>& dstLane,
-                   std::string& laneType);
+  void extractLane(cv::Mat& perspectiveImg, std::vector<double>& hist,
+                   std::vector<cv::Point>& dstLane,
+                   std::string laneType);
   /**
    *   @brief Function to fit a polynomial on the received lane pixel data
    *
@@ -91,8 +107,9 @@ class LaneDetection {
    *   @param pixel locations fitted to a particular polynomial, type std::vector<cv::Point_<int>>
    *   @return nothing
    */
-  void fitPoly(std::vector<cv::Point_<int>> laneLR,
-               std::vector<cv::Point_<int>> dstPixelPoly);
+  void fitPoly(std::vector<cv::Point> laneLR,
+               cv::Mat dstLaneParameters,
+               int order);
   /**
    *   @brief Function to extract central line
    *
@@ -121,6 +138,13 @@ class LaneDetection {
    *   @return radius of curvature, type double
    */
   double computeRadiusOfCurve(std::vector<cv::Point_<int>> centralLine);
+  /**
+   *   @brief Function to implement the entire system pipeline
+   *
+   *   @param nothing
+   *   @return nothing
+   */
+  void detectLanes(void);
 };
 
 #endif  // INCLUDE_LANEDETECTION_HPP_

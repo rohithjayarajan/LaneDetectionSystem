@@ -47,6 +47,8 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
 class ImageProcessing {
  private:
@@ -54,10 +56,10 @@ class ImageProcessing {
   cv::Mat distortionCoeffs;  // Distortion coefficients
   double gaussianSigmaX;  // standard deviation in X for gaussian blur
   double gaussianSigmaY;  // standard deviation in Y for gaussian blur
-  cv::Vec<double, 3> minThreshHSL;  // HSL color space threshold values
-  cv::Vec<double, 3> maxThreshHSL;  // HSL color space threshold values
-  cv::Vec<double, 3> minThreshBGR;  // RGB color space threshold values
-  cv::Vec<double, 3> maxThreshBGR;  // RGB color space threshold values
+  cv::Scalar minThreshHLS;  // HSL color space threshold values
+  cv::Scalar maxThreshHLS;  // HSL color space threshold values
+  cv::Scalar minThreshBGR;  // RGB color space threshold values
+  cv::Scalar maxThreshBGR;  // RGB color space threshold values
 
  public:
   /**
@@ -73,7 +75,7 @@ class ImageProcessing {
    *   @param nothing
    *   @return nothing
    */
-  ~ImageProcessing();
+  virtual ~ImageProcessing();
   /**
    *   @brief Function to pre-process the input image
    *
@@ -81,7 +83,7 @@ class ImageProcessing {
    *   @param processed image of type cv::Mat
    *   @return nothing
    */
-  void preProcessing(cv::Mat& srcImg, cv::Mat& dstImg);
+  void preProcessing(cv::Mat& src, cv::Mat& dst);
   /**
    *   @brief Function to get a binary image after color thresholding and edge
    *   detection
@@ -90,7 +92,7 @@ class ImageProcessing {
    *   @param binary image of type cv::Mat
    *   @return nothing
    */
-  void getBinaryImg(cv::Mat& srcImg, cv::Mat& dstImg);
+  void getBinaryImg(cv::Mat& src, cv::Mat& dst);
   /**
    *   @brief Function to perform prospective transform
    *
@@ -98,7 +100,8 @@ class ImageProcessing {
    *   @param bird's view image of type cv::Mat
    *   @return nothing
    */
-  void prespectiveTransform(cv::Mat& srcImg, cv::Mat& dstImg);
+  void prespectiveTransform(cv::Mat& src, cv::Mat& dst,
+                            cv::Mat& T_perspective_inv);
   /**
    *   @brief Function to set camera matrix
    *
@@ -108,7 +111,7 @@ class ImageProcessing {
    *   @param cy, the y coordinate of camera center of type double
    *   @return nothing
    */
-  void setIntrinsic(double fx_, double fy_, double cx_, double cy);
+  void setIntrinsic(double fx_, double fy_, double cx_, double cy_);
   /**
    *   @brief Function to set camera distortion
    *
@@ -119,49 +122,50 @@ class ImageProcessing {
    *   @param distortion parameter k3 of type double
    *   @return nothing
    */
-  void setDistCoeffs(double k1_, double k2_, double p1_, double p2_, double k3);
+  void setDistCoeffs(double k1_, double k2_, double p1_, double p2_,
+                     double k3_);
   /**
    *   @brief Function to set standard deviation in X for gaussian blur
    *
    *   @param standard deviation in X for gaussian blur
    *   @return nothing
    */
-  void setgaussianSigmaX(double gaussianSigmaX);
+  void setgaussianSigmaX(double gaussianSigmaX_);
   /**
    *   @brief Function to set standard deviation in Y for gaussian blur
    *
    *   @param standard deviation in Y for gaussian blur
    *   @return nothing
    */
-  void setgaussianSigmaY(double gaussianSigmaY);
+  void setgaussianSigmaY(double gaussianSigmaY_);
   /**
    *   @brief Function to set HSL color space minimum threshold value
    *
    *   @param minimum threshold values for hue,saturation and luminousness, type cv::Vec<double, 3>
    *   @return nothing
    */
-  void setMinThreshHLS(cv::Vec<double, 3> minThreshHSL);
+  void setMinThreshHLS(cv::Scalar minThreshHSL_);
   /**
    *   @brief Function to set HSL color space maximum threshold value
    *
    *   @param maximum threshold values for hue,saturation and luminousness, type cv::Vec<double, 3>
    *   @return nothing
    */
-  void setMaxThreshHLS(cv::Vec<double, 3> maxThreshHSL);
+  void setMaxThreshHLS(cv::Scalar maxThreshHSL_);
   /**
    *   @brief Function to set RGB color space minimum threshold value
    *
    *   @param minimum threshold values for red,green and blue, type cv::Vec<double, 3>
    *   @return nothing
    */
-  void setMinThreshBGR(cv::Vec<double, 3> minThreshBGR);
+  void setMinThreshBGR(cv::Scalar minThreshBGR_);
   /**
    *   @brief Function to set RGB color space maximum threshold value
    *
    *   @param maximum threshold values for red,green and blue, type cv::Vec<double, 3>
    *   @return nothing
    */
-  void setMaxThreshBGR(cv::Vec<double, 3> maxThreshBGR);
+  void setMaxThreshBGR(cv::Scalar maxThreshBGR_);
   /**
    *   @brief Function to get camera matrix
    *
@@ -203,28 +207,28 @@ class ImageProcessing {
    *   @param nothing
    *   @return minimum threshold values for hue,saturation and luminousness, type cv::Vec<double, 3>
    */
-  cv::Vec<double, 3> getMinThreshHLS(void);
+  cv::Scalar getMinThreshHLS(void);
   /**
    *   @brief Function to get HSL color space maximum threshold value
    *
    *   @param nothing
    *   @return maximum threshold values for hue,saturation and luminousness, type cv::Vec<double, 3>
    */
-  cv::Vec<double, 3> getMaxThreshHLS(void);
+  cv::Scalar getMaxThreshHLS(void);
   /**
    *   @brief Function to get RGB color space minimum threshold value
    *
    *   @param nothing
    *   @return minimum threshold values for red,green and blue, type cv::Vec<double, 3>
    */
-  cv::Vec<double, 3> getMinThreshBGR(void);
+  cv::Scalar getMinThreshBGR(void);
   /**
    *   @brief Function to get RGB color space maximum threshold value
    *
    *   @param nothing
    *   @return maximum threshold values for red,green and blue, type cv::Vec<double, 3>
    */
-  cv::Vec<double, 3> getMaxThreshBGR(void);
+  cv::Scalar getMaxThreshBGR(void);
 };
 
 #endif  // INCLUDE_IMAGEPROCESSING_HPP_

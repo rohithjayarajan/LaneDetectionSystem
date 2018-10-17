@@ -37,6 +37,35 @@ FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TOR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE.
 ```
+## Algorithm Pipeline
+
+Aim of the project is to formulate a software pipeline to identify white/yellow lanes on the road and predict the steering angle for autonomous vehicles.
+
+The video input is from a fixed front facing camera installed on top of the vehicle/car. The camera’s intrinsic parameters and the distortion coefficients for the given dataset was provided.
+
+![](images/1.png)
+
+As no camera is perfect, the distortions in the camera lens modifies the captured image, therefore the camera intrinsic parameters and distortion coefficients are used to un-distort the image frames before carrying out any further processing. A gaussian filter is used to smooth the image frame and reduce the noise content in it.
+
+ A region of interest is extracted by eliminating the upper half of the image, as it is obvious that the lanes are present only in the lower half. Also extracting an ROI as part of the pre-processing step helps in reducing computation to a great extent in later steps.
+ 
+ ![](images/2.png)
+
+Following the initial preprocessing of the image frames, thresholding technique in both RGB and HLS color spaces were tried, to get the binary image showing just the lane pixels. As HLS color space is more immune to variations in illumination/external lighting, it gives a better result. Finding the optimal threshold values for hue, saturation and luminescence is the most time consuming process in this phase.
+
+![](images/3.png)
+
+The received binary image consisting of the lanes, is then transformed (perspective transformation) to obtain a top view. This allows to fit a curve on the lane pixels as they were projected onto a 2D surface.
+
+![](images/4.png)
+
+The next step is to fit a second degree polynomial onto the left and right lane pixels. A histogram is generated representing the pixel count along the y-axis while we sweep across the width of the image. The two highest peaks in the histogram will likely be the x location for the base of the lane lines.
+
+Two sliding windows representing the left and right lanes are aligned with the lane centers at the base of the image frame, these windows then track the lanes up to the top of the frame.
+
+On getting the fitted lane pixels, the same is plotted on the image and the turn angle is computed.
+
+The last step is to warp the lane boundaries back onto the original image by inverse perspective transformation.    
 
 ## Dependencies
 
@@ -165,3 +194,20 @@ perspetive view (or Windows->Perspective->Open Perspective->C/C++).
 - Git
 
     It is possible to manage version control through Eclipse and the git plugin, but it typically requires creating another project. If you're interested in this, try it out yourself and contact me on Canvas.
+    
+## Doxygen Documentation
+
+To generate Doxygen Documentation,
+```
+cd <path to repository>
+mkdir <documentation_folder_name>
+cd <documentation_folder_name>
+doxygen -g <config_file_name>
+
+```
+Update PROJECT_NAME and INPUT fields in the configuration file.
+
+Then run the following command to generate the documentations,
+```
+doxygen <config_file_name>
+```

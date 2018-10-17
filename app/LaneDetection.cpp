@@ -42,6 +42,7 @@
 
 #include "LaneDetection.hpp"
 #include "ImageProcessing.cpp"
+#include "LaneInfo.cpp"
 
 /**
  *   @brief Default constructor for LaneDetection
@@ -55,7 +56,7 @@ LaneDetection::LaneDetection() {
 /**
  *   @brief Default destructor for LaneDetection
  *
- *   @param nothing
+ *   @param
  *   @return nothing
  */
 LaneDetection::~LaneDetection() {
@@ -74,9 +75,11 @@ LaneDetection::~LaneDetection() {
  *   @return nothing
  */
 void LaneDetection::generateHist(cv::Mat& src, std::vector<double>& hist) {
-//  hist = cv::Mat::zeros(1, src.cols, CV_64FC1);
+  // select ROI as bottom half of the image
   cv::Rect bottomHalfROI(0, src.rows / 2, src.cols, src.rows / 2);
+  // crop image according to ROI
   cv::Mat bottomHalfImage = src(bottomHalfROI);
+  // reduce the image to a row vector of sum of rows
   cv::reduce(bottomHalfImage, hist, 0, CV_REDUCE_SUM, CV_64FC1);
 }
 /**
@@ -88,17 +91,23 @@ void LaneDetection::generateHist(cv::Mat& src, std::vector<double>& hist) {
  *   @return nothing
  */
 int LaneDetection::averageWindowCenter(int& xVal_) {
-  int new_xVal = 0;
+  int new_xVal = 0;  // initialize variable for new histogram center
+  //  condition to push elements in vector to compute average center of
+  //  histogram
   if (avgRightCenter.size() < windowBuffer) {
+    // push element in the container
     avgRightCenter.push_back(xVal_);
   }
   else {
+    // erase first four values of container
     avgRightCenter.erase(avgRightCenter.begin(), avgRightCenter.begin() + 3);
     avgRightCenter.push_back(xVal_);
   }
+  // compute sum of the histogram center
   for (int& n : avgRightCenter) {
     new_xVal += n;
   }
+  // compute average of the histogram center
   new_xVal = new_xVal / avgRightCenter.size();
   return new_xVal;
 }
@@ -113,116 +122,120 @@ int LaneDetection::averageWindowCenter(int& xVal_) {
 void LaneDetection::extractLane(cv::Mat& perspectiveImg,
                                 std::vector<double>& hist,
                                 std::vector<cv::Point>& dstLane,
-                                std::string laneType) {
-  cv::Mat debug;
+                                std::string laneType, cv::Mat& drawWindow) {
+  cv::Mat debug;  // create image container called debug
+  // copy contents of perspectiveImg to debug
   perspectiveImg.copyTo(debug);
-  cv::Mat drawWindow;
+  // convert debug to color space BGR and save it in drawWindow
   cv::cvtColor(debug, drawWindow, cv::COLOR_GRAY2BGR);
+  //initialize midpoint of histogram
   std::size_t const histMidPoint = hist.size() / 2;
+  // get left half of histogram
   std::vector<double> histLeft(hist.begin(), hist.begin() + histMidPoint);
+  // get right half of histogram
   std::vector<double> histRight(hist.begin() + histMidPoint, hist.end());
-  int idxPeak;
-  if (laneType == "Left") {
-    idxPeak = std::max_element(histLeft.begin(), histLeft.end())
-        - histLeft.begin();
-    int xVal = idxPeak;
-    int numWindows = 8;
-    int linespace = 0;
-    int linespaceBound = 100;
-    int heightWindow = perspectiveImg.rows / numWindows;
-    int widthWindow = 2 * heightWindow;
-    int temp_xVal;
-    int var_heightWindow = perspectiveImg.rows;
-    std::vector<int> updated_xVal_list;
-    for (int windows = 0; windows < numWindows; windows++) {
-      cv::Point windowTopLeft(xVal - widthWindow / 2,
-                              var_heightWindow - heightWindow);
-      cv::Point windowBottomRight(xVal + widthWindow / 2, var_heightWindow);
-      cv::rectangle(drawWindow, windowTopLeft, windowBottomRight,
-                    cv::Scalar(0, 0, 255), 1);
-      for (int x_iter = windowTopLeft.x; x_iter <= windowBottomRight.x;
-          x_iter++) {
-        for (int y_iter = windowTopLeft.y; y_iter <= windowBottomRight.y;
-            y_iter++) {
-          if (perspectiveImg.at<uchar>(y_iter, x_iter) > 0) {
-            if (linespace % linespaceBound == 0) {
-              dstLane.push_back(cv::Point(y_iter, x_iter));
-            }
-            linespace++;
-            drawWindow.at<cv::Vec3b>(cv::Point(x_iter, y_iter)) = cv::Vec3b(255,
-                                                                        128,
-                                                                        14);
-            updated_xVal_list.push_back(x_iter);
+  int idxPeakL, idxPeakR;  // declare peaks of histogram
+  // get left peak of histogram
+  idxPeakL = std::max_element(histLeft.begin(), histLeft.end())
+      - histLeft.begin();
+  int xValL = idxPeakL;  // initialize xValL to left histograms  peak
+  int numWindowsL = 8;  // set the number of left lane sliding windows
+  //set the height of sliding window for left lane
+  int heightWindowL = perspectiveImg.rows / numWindowsL;
+  //set the width of sliding window for left lane
+  int widthWindowL = 2 * heightWindowL;
+  int temp_xValL;  // temporary variable to hold new peak
+  //variable to update the height of sliding window from bottom of image
+  int var_heightWindowL = perspectiveImg.rows;
+  std::vector<int> updated_xVal_listL;  // initialize list of updated peaks
+  // algorithm to find the lane pixels using sliding window approach
+  for (int windowsL = 0; windowsL < numWindowsL; windowsL++) {
+    // initialize the top left corner coordinates of sliding window
+    cv::Point windowTopLeft(xValL - widthWindowL / 2,
+                            var_heightWindowL - heightWindowL);
+    // initialize the bottom right corner coordinates of sliding window
+    cv::Point windowBottomRight(xValL + widthWindowL / 2, var_heightWindowL);
+    for (int x_iterL = windowTopLeft.x; x_iterL <= windowBottomRight.x;
+        x_iterL++) {
+      for (int y_iterL = windowTopLeft.y; y_iterL <= windowBottomRight.y;
+          y_iterL++) {
+        // if image consists lane pixel, push it to container
+        if (perspectiveImg.at<uchar>(y_iterL, x_iterL) > 0) {
+          dstLane.push_back(cv::Point(y_iterL, x_iterL));
+          // mark the lane pixels to a distinct color
+          drawWindow.at<cv::Vec3b>(cv::Point(x_iterL, y_iterL)) = cv::Vec3b(0,
+                                                                            255,
+                                                                            0);
+          // container to update the new x coordinate value for further processing
+          updated_xVal_listL.push_back(x_iterL);
           }
         }
       }
-      if (!updated_xVal_list.empty()) {
-        temp_xVal = 0;
-        for (int& n : updated_xVal_list) {
-          temp_xVal += n;
+    // calculate the average value of the new x position of sliding window
+    if (!updated_xVal_listL.empty()) {
+      temp_xValL = 0;
+      for (int& n : updated_xVal_listL) {
+        temp_xValL += n;
         }
-        xVal = temp_xVal / updated_xVal_list.size();
+      xValL = temp_xValL / updated_xVal_listL.size();
       }
-      var_heightWindow = var_heightWindow - heightWindow - 1;
-      updated_xVal_list.clear();
+    // update the height of window
+    var_heightWindowL = var_heightWindowL - heightWindowL - 1;
+    // clear the list
+    updated_xVal_listL.clear();
     }
-    std::cout << dstLane.size();
-    this->fitPoly(dstLane, leftLaneCoeffs, 2);
-    cv::imshow("Undistorted Frame", drawWindow);
-    cv::waitKey(0);
-  } else if (laneType == "Right") {
-    idxPeak = std::max_element(histRight.begin(), histRight.end())
+  // get right peak of histogram
+  idxPeakR = std::max_element(histRight.begin(), histRight.end())
         - histRight.begin()
         + histMidPoint;
-    int xVal = averageWindowCenter(idxPeak);
-    int numWindows = 8;
-    int linespace = 0;
-    int linespaceBound = 100;
-    int heightWindow = perspectiveImg.rows / numWindows;
-    int widthWindow = 2 * heightWindow;
-    int temp_xVal;
-    int var_heightWindow = perspectiveImg.rows;
-    std::vector<int> updated_xVal_list;
-    for (int windows = 0; windows < numWindows; windows++) {
-      cv::Point windowTopLeft(xVal - widthWindow / 2,
-                              var_heightWindow - heightWindow);
-      cv::Point windowBottomRight(xVal + widthWindow / 2, var_heightWindow);
-      cv::rectangle(drawWindow, windowTopLeft, windowBottomRight,
-                    cv::Scalar(0, 0, 255), 1);
-      for (int x_iter = windowTopLeft.x; x_iter <= windowBottomRight.x;
-          x_iter++) {
-        for (int y_iter = windowTopLeft.y; y_iter <= windowBottomRight.y;
-            y_iter++) {
-          if (perspectiveImg.at<uchar>(y_iter, x_iter) > 0) {
-            if (linespace % linespaceBound == 0) {
-              dstLane.push_back(cv::Point(y_iter, x_iter));
-            }
-            linespace++;
-            drawWindow.at<cv::Vec3b>(cv::Point(x_iter, y_iter)) = cv::Vec3b(255,
-                                                                        128,
-                                                                        14);
-            updated_xVal_list.push_back(x_iter);
+  // initialize xValL to right histograms  peak
+  int xValR = averageWindowCenter(idxPeakR);
+  // set the number of left lane sliding windows
+  int numWindowsR = 8;
+  //set the height of sliding window for left lane
+  int heightWindowR = perspectiveImg.rows / numWindowsR;
+  //set the width of sliding window for left lane
+  int widthWindowR = 2 * heightWindowR;
+  int temp_xValR;  // temporary variable to hold new peak
+  //variable to update the height of sliding window from bottom of image
+  int var_heightWindowR = perspectiveImg.rows;
+  std::vector<int> updated_xVal_listR;  // initialize list of updated peaks
+  // algorithm to find the lane pixels using sliding window approach
+  for (int windowsR = 0; windowsR < numWindowsR; windowsR++) {
+    // initialize the top left corner coordinates of sliding window
+    cv::Point windowTopLeft(xValR - widthWindowR / 2,
+                            var_heightWindowR - heightWindowR);
+    // initialize the bottom right corner coordinates of sliding window
+    cv::Point windowBottomRight(xValR + widthWindowR / 2, var_heightWindowR);
+    for (int x_iterR = windowTopLeft.x; x_iterR <= windowBottomRight.x;
+        x_iterR++) {
+      // if image consists lane pixel, push it to container
+      for (int y_iterR = windowTopLeft.y; y_iterR <= windowBottomRight.y;
+          y_iterR++) {
+        if (perspectiveImg.at<uchar>(y_iterR, x_iterR) > 0) {
+          dstLane.push_back(cv::Point(y_iterR, x_iterR));
+          // mark the lane pixels to a distinct color
+          drawWindow.at<cv::Vec3b>(cv::Point(x_iterR, y_iterR)) = cv::Vec3b(
+                0, 0, 255);
+          // container to update the new x coordinate value for
+          // further processing
+          updated_xVal_listR.push_back(x_iterR);
           }
         }
       }
-      if (!updated_xVal_list.empty()) {
-        temp_xVal = 0;
-        for (int& n : updated_xVal_list) {
-          temp_xVal += n;
+    // calculate the average value of the new x position
+    // of sliding window
+    if (!updated_xVal_listR.empty()) {
+      temp_xValR = 0;
+      for (int& n : updated_xVal_listR) {
+        temp_xValR += n;
         }
-        xVal = temp_xVal / updated_xVal_list.size();
+      xValR = temp_xValR / updated_xVal_listR.size();
       }
-      var_heightWindow = var_heightWindow - heightWindow - 1;
-//      updated_xVal_list.clear();
-    }
-    std::cout << dstLane.size();
-    this->fitPoly(dstLane, rightLaneCoeffs, 2);
-    cv::imshow("Undistorted Frame", drawWindow);
-    cv::waitKey(0);
-  } else {
-    throw std::invalid_argument("received unknown lane type value");
+    // update the height of window
+    var_heightWindowR = var_heightWindowR - heightWindowR - 1;
   }
-}
+  }
 /**
  *   @brief Function to fit a polynomial on the received lane pixel data
  *
@@ -230,8 +243,8 @@ void LaneDetection::extractLane(cv::Mat& perspectiveImg,
  *   @param pixel locations fitted to a particular polynomial, type std::vector<cv::Point_<int>>
  *   @return nothing
  */
-void LaneDetection::fitPoly(std::vector<cv::Point> laneLR,
-                            cv::Mat dstLaneParameters, int order) {
+void LaneDetection::fitPoly(std::vector<cv::Point>& laneLR,
+                            cv::Mat& dstLaneParameters, int order) {
   cv::Mat src_x = cv::Mat(laneLR.size(), 1, CV_32F);
   cv::Mat src_y = cv::Mat(laneLR.size(), 1, CV_32F);
   for (int iter = 0; iter < laneLR.size(); iter++) {
@@ -262,29 +275,22 @@ void LaneDetection::fitPoly(std::vector<cv::Point> laneLR,
  *   @param central line pixel locations, type std::vector<cv::Point_<int>>
  *   @return nothing
  */
-void LaneDetection::extractCentralLine(
-    std::vector<cv::Point_<int>> leftLane,
-                        std::vector<cv::Point_<int>> rightLane,
-    std::vector<cv::Point_<int>> centralLine) {
+void LaneDetection::extractCentralLine(std::vector<cv::Point>& leftLanePoints,
+                                       std::vector<cv::Point>& centralLine) {
+  int offset = 333;  // offset for central line
+  // update central line information
+  for (auto& n : leftLanePoints) {
+    centralLine.push_back(cv::Point(n.y, n.x + offset));
+  }
 }
 /**
- *   @brief Function to compute slope of the central line
- *
- *   @param central line pixel location, type std::vector<cv::Point_<int>>
- *   @param string, indicating left or right turn
- *   @return nothing
- */
-void LaneDetection::computeGradient(std::vector<cv::Point_<int>> centralLine,
-                                    std::string steerDirection) {
-}
-/**
- *   @brief Function to compute radius of curvature of the lane
+ *   @brief Function to compute turn angle for the lane
  *
  *   @param central line pixel locations, type std::vector<cv::Point_<int>>
  *   @return radius of curvature, type double
  */
-double LaneDetection::computeRadiusOfCurve(
-    std::vector<cv::Point_<int>> centralLine) {
+double LaneDetection::computeTurnAngle(
+    std::vector<cv::Point>& leftLine) {
   return 0.0;
 }
 /**
@@ -307,31 +313,58 @@ void LaneDetection::detectLanes(void) {
   if (!cap.isOpened()) {  // check if file is opened
     std::cout << "No video file detected!!!" << std::endl;
   }
-  cv::Mat frame;
+  // declare the images to be used or processed
+  cv::Mat frame, processedFrame, binaryFrame, perspectiveImg, T_perspective_inv,
+      drawWindow, ouputFrame, unWarp_drawWindow;
   ImageProcessing processImage;
-  cv::Mat processedFrame, binaryFrame, perspectiveImg, T_perspective_inv;
+  // declare the containers to be used
   std::vector<double> histogram;
-  std::vector<cv::Point> leftLane;
-  std::vector<cv::Point> rightLane;
+  std::vector<cv::Point> leftLanePts, rightLanePts;
   while (true) {
     cap >> frame;  // process video frame by frame
     // if frame is empty, break
     if (frame.empty()) {
       break;
     }
+    // pre process image
     processImage.preProcessing(frame, processedFrame);
+    // get binary thresholded image
     processImage.getBinaryImg(processedFrame, binaryFrame);
+    // get perspective image
     processImage.prespectiveTransform(binaryFrame, perspectiveImg,
                                       T_perspective_inv);
+    // generate histogram of image pixels
     generateHist(perspectiveImg, histogram);
-    extractLane(perspectiveImg, histogram, leftLane, "Left");
-    extractLane(perspectiveImg, histogram, rightLane, "Right");
-//    cv::imshow("Undistorted Frame", perspectiveImg);
-//    cv::imshow("Undistorted Frame", perspectiveImg);
-//    cv::waitKey(0);
-    // press ESC to exit
-//    char c = (char) cv::waitKey(25);
-//    if (c == 27)
+    // extract lanes
+    extractLane(perspectiveImg, histogram, leftLanePts, "Left", drawWindow);
+    cv::Mat outImage, colorOutImage;
+    // undo perspective transformation
+    cv::warpPerspective(drawWindow, outImage, T_perspective_inv,
+                        drawWindow.size());
+
+    outImage.copyTo(colorOutImage);
+    int width = frame.cols;
+    int height = frame.rows;
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        if ((colorOutImage.at<cv::Vec3b>(j, i)[0] == 0)
+            && (colorOutImage.at<cv::Vec3b>(j, i)[1] == 0)
+            && (colorOutImage.at<cv::Vec3b>(j, i)[2] == 0)) {
+          colorOutImage.at<cv::Vec3b>(j, i)[0] = frame.at<cv::Vec3b>(j, i)[0];
+          colorOutImage.at<cv::Vec3b>(j, i)[1] = frame.at<cv::Vec3b>(j, i)[1];
+          colorOutImage.at<cv::Vec3b>(j, i)[2] = frame.at<cv::Vec3b>(j, i)[2];
+        }
+      }
+    }
+
+    cv::imshow("Undistorted Frame", colorOutImage);
+    cv::waitKey(0);
+//    //    press ESC
+//    //    to exit
+    char c = (char) cv::waitKey(25);
+    if (c == 27)
+      break;
+//    if (cv::waitKey(30) >= 0)
 //      break;
   }
   cap.release();  // release video capture object

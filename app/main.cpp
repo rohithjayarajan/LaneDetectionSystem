@@ -1,7 +1,7 @@
 /**
  *  Copyright [2018] Akash Guha
  *  @file    main.cpp
- *  @author  Akash Guha
+ *  @author  Akash Guha, rohithjayarajan
  *
  *  @brief Lane Detection Main file
  *
@@ -12,7 +12,10 @@
  *
  */
 #include <iostream>
+#include "LaneDetection.cpp"
 
 int main() {
-    return 0;
+  LaneDetection lanes;
+  lanes.detectLanes();
+  return 0;
 }

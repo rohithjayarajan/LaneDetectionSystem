@@ -45,11 +45,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <chrono>
+#include <thread>
 #include "opencv2/core/core.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "LaneInfo.hpp"
 
 class LaneDetection {
  private:
@@ -57,6 +60,7 @@ class LaneDetection {
   std::vector<int> avgRightCenter;
   cv::Mat leftLaneCoeffs;
   cv::Mat rightLaneCoeffs;
+
  public:
   /**
    *   @brief Default constructor for LaneDetection
@@ -71,7 +75,7 @@ class LaneDetection {
    *   @param nothing
    *   @return nothing
    */
-  virtual ~LaneDetection();
+  ~LaneDetection();
   /**
    *   @brief Function to generate lane pixel histogram
    *
@@ -99,7 +103,8 @@ class LaneDetection {
    */
   void extractLane(cv::Mat& perspectiveImg, std::vector<double>& hist,
                    std::vector<cv::Point>& dstLane,
-                   std::string laneType);
+                   std::string laneType,
+                   cv::Mat& drawWindow);
   /**
    *   @brief Function to fit a polynomial on the received lane pixel data
    *
@@ -107,8 +112,7 @@ class LaneDetection {
    *   @param pixel locations fitted to a particular polynomial, type std::vector<cv::Point_<int>>
    *   @return nothing
    */
-  void fitPoly(std::vector<cv::Point> laneLR,
-               cv::Mat dstLaneParameters,
+  void fitPoly(std::vector<cv::Point>& laneLR, cv::Mat& dstLaneParameters,
                int order);
   /**
    *   @brief Function to extract central line
@@ -118,26 +122,15 @@ class LaneDetection {
    *   @param central line pixel locations, type std::vector<cv::Point_<int>>
    *   @return nothing
    */
-  void extractCentralLine(
-      std::vector<cv::Point_<int>> leftLane,
-                          std::vector<cv::Point_<int>> rightLane,
-                          std::vector<cv::Point_<int>> centralLine);
+  void extractCentralLine(std::vector<cv::Point>& leftLanePoints,
+          std::vector<cv::Point>& centralLine);
   /**
-   *   @brief Function to compute slope of the central line
+   *   @brief Function to compute turn angle for the lane
    *
-   *   @param central line pixel location, type std::vector<cv::Point_<int>>
-   *   @param string, indicating left or right turn
-   *   @return nothing
+   *   @param left line pixel locations, type std::vector<cv::Point_<int>>
+   *   @return turn angle, type double
    */
-  void computeGradient(std::vector<cv::Point_<int>> centralLine,
-                       std::string steerDirection);
-  /**
-   *   @brief Function to compute radius of curvature of the lane
-   *
-   *   @param central line pixel locations, type std::vector<cv::Point_<int>>
-   *   @return radius of curvature, type double
-   */
-  double computeRadiusOfCurve(std::vector<cv::Point_<int>> centralLine);
+  double computeTurnAngle(std::vector<cv::Point>& leftLine);
   /**
    *   @brief Function to implement the entire system pipeline
    *
@@ -145,6 +138,7 @@ class LaneDetection {
    *   @return nothing
    */
   void detectLanes(void);
-};
+}
+  ;
 
 #endif  // INCLUDE_LANEDETECTION_HPP_

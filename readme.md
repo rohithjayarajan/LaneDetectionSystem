@@ -67,7 +67,9 @@ Two sliding windows representing the left and right lanes are aligned with the l
 
 On getting the fitted lane pixels, the same is plotted on the image and the turn angle is computed.
 
-The last step is to warp the lane boundaries back onto the original image by inverse perspective transformation.    
+The last step is to warp the lane boundaries back onto the original image by inverse perspective transformation.
+
+![](images/6.png)
 
 ## Dependencies
 
@@ -91,8 +93,15 @@ mkdir build
 cd build
 cmake ..
 make
-Run tests: ./test/cpp-test
-Run program: ./app/shell-app
+```
+Run tests: 
+```
+./test/cpp-test
+```
+Run program: 
+```
+cd..
+./build/app/shell-app
 ```
 
 ## Building for code coverage

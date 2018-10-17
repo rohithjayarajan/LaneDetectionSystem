@@ -32,9 +32,9 @@ class ImageProcessingTest : public ::testing::Test {
 TEST_F(ImageProcessingTest, isIntrinsicSet) {
   testObject.setIntrinsic(1.0, 2.0, 3.0, 4.0);
   cv::Mat gotIntrinsic = testObject.getIntrinsic();
-  EXPECT_EQ(6.0, gotIntrinsic.at<double>(0, 0));
-  EXPECT_EQ(2.0, gotIntrinsic.at<double>(0, 1));
-  EXPECT_EQ(3.0, gotIntrinsic.at<double>(1, 1));
+  EXPECT_EQ(1.0, gotIntrinsic.at<double>(0, 0));
+  EXPECT_EQ(2.0, gotIntrinsic.at<double>(1, 1));
+  EXPECT_EQ(3.0, gotIntrinsic.at<double>(0, 2));
   EXPECT_EQ(4.0, gotIntrinsic.at<double>(1, 2));
 }
 /**

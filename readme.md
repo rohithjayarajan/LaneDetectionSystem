@@ -61,6 +61,8 @@ The received binary image consisting of the lanes, is then transformed (perspect
 
 The next step is to fit a second degree polynomial onto the left and right lane pixels. A histogram is generated representing the pixel count along the y-axis while we sweep across the width of the image. The two highest peaks in the histogram will likely be the x location for the base of the lane lines.
 
+![](images/5.png)
+
 Two sliding windows representing the left and right lanes are aligned with the lane centers at the base of the image frame, these windows then track the lanes up to the top of the frame.
 
 On getting the fitted lane pixels, the same is plotted on the image and the turn angle is computed.

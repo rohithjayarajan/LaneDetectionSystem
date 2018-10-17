@@ -5,8 +5,10 @@ add_executable(
     main.cpp
     ImageProcessingTest.cpp
     LaneDetectionTest.cpp
+    LaneInfoTest.cpp
     ../app/ImageProcessing.cpp
     ../app/LaneDetection.cpp
+    ../app/LaneInfo.cpp
 )
 
 target_include_directories(cpp-test PUBLIC ../vendor/googletest/googletest/include 

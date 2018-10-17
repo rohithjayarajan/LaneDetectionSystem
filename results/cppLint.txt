@@ -1,0 +1,34 @@
+Done processing ./test/LaneInfoTest.cpp
+Done processing ./test/ImageProcessingTest.cpp
+Done processing ./test/LaneDetectionTest.cpp
+Done processing ./test/main.cpp
+Done processing ./include/LaneInfo.hpp
+./include/LaneDetection.hpp:83:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& src  [runtime/references] [2]
+./include/LaneDetection.hpp:83:  Is this a non-const reference? If so, make const or use a pointer: std::vector<double>& hist  [runtime/references] [2]
+./include/LaneDetection.hpp:92:  Is this a non-const reference? If so, make const or use a pointer: int& xVal  [runtime/references] [2]
+./include/LaneDetection.hpp:101:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& perspectiveImg  [runtime/references] [2]
+./include/LaneDetection.hpp:101:  Is this a non-const reference? If so, make const or use a pointer: std::vector<double>& hist  [runtime/references] [2]
+./include/LaneDetection.hpp:102:  Is this a non-const reference? If so, make const or use a pointer: std::vector<cv::Point>& dstLane  [runtime/references] [2]
+./include/LaneDetection.hpp:104:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& drawWindow  [runtime/references] [2]
+./include/LaneDetection.hpp:112:  Is this a non-const reference? If so, make const or use a pointer: std::vector<cv::Point>& laneLR  [runtime/references] [2]
+./include/LaneDetection.hpp:112:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& dstLaneParameters  [runtime/references] [2]
+./include/LaneDetection.hpp:122:  Is this a non-const reference? If so, make const or use a pointer: std::vector<cv::Point>& leftLanePoints  [runtime/references] [2]
+./include/LaneDetection.hpp:123:  Is this a non-const reference? If so, make const or use a pointer: std::vector<cv::Point>& centralLine  [runtime/references] [2]
+./include/LaneDetection.hpp:130:  Is this a non-const reference? If so, make const or use a pointer: std::vector<cv::Point>& leftLine  [runtime/references] [2]
+Done processing ./include/LaneDetection.hpp
+./include/ImageProcessing.hpp:86:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& src  [runtime/references] [2]
+./include/ImageProcessing.hpp:86:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& dst  [runtime/references] [2]
+./include/ImageProcessing.hpp:95:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& src  [runtime/references] [2]
+./include/ImageProcessing.hpp:95:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& dst  [runtime/references] [2]
+./include/ImageProcessing.hpp:103:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& src  [runtime/references] [2]
+./include/ImageProcessing.hpp:103:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& dst  [runtime/references] [2]
+./include/ImageProcessing.hpp:104:  Is this a non-const reference? If so, make const or use a pointer: cv::Mat& T_perspective_inv  [runtime/references] [2]
+Done processing ./include/ImageProcessing.hpp
+Done processing ./app/LaneDetection.cpp
+./app/ImageProcessing.cpp:52:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./app/ImageProcessing.cpp:55:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+Done processing ./app/ImageProcessing.cpp
+Done processing ./app/LaneInfo.cpp
+Done processing ./app/main.cpp
+Total errors found: 21
+

@@ -1,0 +1,27 @@
+Checking app/ImageProcessing.cpp...
+[app/ImageProcessing.cpp:134] -> [app/ImageProcessing.cpp:144]: (performance) Variable 'T_perspective' is reassigned a value before the old one has been used.
+[app/ImageProcessing.cpp:129]: (style) Variable 'inputQuadrilateral' is assigned a value that is never used.
+[app/ImageProcessing.cpp:131]: (style) Variable 'outputQuadrilateral' is assigned a value that is never used.
+1/8 files checked 34% done
+Checking app/LaneDetection.cpp...
+[app/LaneDetection.cpp:321]: (style) Unused variable: rightLanePts
+2/8 files checked 75% done
+Checking app/LaneInfo.cpp...
+3/8 files checked 83% done
+Checking app/main.cpp...
+4/8 files checked 84% done
+Checking test/ImageProcessingTest.cpp...
+5/8 files checked 93% done
+Checking test/LaneDetectionTest.cpp...
+6/8 files checked 94% done
+Checking test/LaneInfoTest.cpp...
+7/8 files checked 99% done
+Checking test/main.cpp...
+8/8 files checked 100% done
+[app/LaneDetection.cpp:291]: (style) The function 'computeTurnAngle' is never used.
+[app/LaneDetection.cpp:277]: (style) The function 'extractCentralLine' is never used.
+[app/LaneDetection.cpp:245]: (style) The function 'fitPoly' is never used.
+[app/LaneInfo.cpp:89]: (style) The function 'getLanePoints' is never used.
+[app/LaneInfo.cpp:65]: (style) The function 'setLanePoints' is never used.
+(information) Cppcheck cannot find all the include files (use --check-config for details)
+

@@ -1,0 +1,507 @@
+\hypertarget{classImageProcessing}{}\section{Image\+Processing Class Reference}
+\label{classImageProcessing}\index{Image\+Processing@{Image\+Processing}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classImageProcessing_a0090ffe36a912d6df5d7a1f507f6252e}{Image\+Processing} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for Img\+Processing. \end{DoxyCompactList}\item 
+virtual \hyperlink{classImageProcessing_a1d4bd00ec1862112552c663034cebabc}{$\sim$\+Image\+Processing} ()
+\begin{DoxyCompactList}\small\item\em Default destructor for Img\+Processing. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a72562595d5ec6974d5e4a715ac2c3f83}{pre\+Processing} (cv\+::\+Mat \&src, cv\+::\+Mat \&dst)
+\begin{DoxyCompactList}\small\item\em Function to pre-\/process the input image. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_ab4520086fa3735882552ab376f94a9f8}{get\+Binary\+Img} (cv\+::\+Mat \&src, cv\+::\+Mat \&dst)
+\begin{DoxyCompactList}\small\item\em Function to get a binary image after color thresholding and edge detection. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_aec91adad633adbbb0f0c0dc7fc595655}{prespective\+Transform} (cv\+::\+Mat \&src, cv\+::\+Mat \&dst, cv\+::\+Mat \&T\+\_\+perspective\+\_\+inv)
+\begin{DoxyCompactList}\small\item\em Function to perform prospective transform. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a0432eb5bac73ebc2d81442577f0466ef}{set\+Intrinsic} (double fx\+\_\+, double fy\+\_\+, double cx\+\_\+, double cy\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set camera matrix. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a669c1fa1566fec74c944d8a74933bb8f}{set\+Dist\+Coeffs} (double k1\+\_\+, double k2\+\_\+, double p1\+\_\+, double p2\+\_\+, double k3\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set camera distortion. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_ade164d66f0f51ab799dbc949c03a7b57}{setgaussian\+SigmaX} (double gaussian\+Sigma\+X\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set standard deviation in X for gaussian blur. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a4854cd009bb4ad04ab69e1ea701b71c8}{setgaussian\+SigmaY} (double gaussian\+Sigma\+Y\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set standard deviation in Y for gaussian blur. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a748f92280f1a0773a56970b787a71682}{set\+Min\+Thresh\+H\+LS} (cv\+::\+Scalar min\+Thresh\+H\+S\+L\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set H\+SL color space minimum threshold value. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a2595139a92ad3de27bcaab4a09d95ceb}{set\+Max\+Thresh\+H\+LS} (cv\+::\+Scalar max\+Thresh\+H\+S\+L\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set H\+SL color space maximum threshold value. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_a64b3a68e766210db6d7e6130d161acb6}{set\+Min\+Thresh\+B\+GR} (cv\+::\+Scalar min\+Thresh\+B\+G\+R\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set R\+GB color space minimum threshold value. \end{DoxyCompactList}\item 
+void \hyperlink{classImageProcessing_ac11c15a2cbdbf71c6d6b1f10a768e4c2}{set\+Max\+Thresh\+B\+GR} (cv\+::\+Scalar max\+Thresh\+B\+G\+R\+\_\+)
+\begin{DoxyCompactList}\small\item\em Function to set R\+GB color space maximum threshold value. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{classImageProcessing_a3f38ff39191c4bec62e5ce03b5e72423}{get\+Intrinsic} (void)
+\begin{DoxyCompactList}\small\item\em Function to get camera matrix. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{classImageProcessing_a07b25ad0e2f707d451dd2cd905739c6d}{get\+Dist\+Coeffs} (void)
+\begin{DoxyCompactList}\small\item\em Function to get camera distortion. \end{DoxyCompactList}\item 
+double \hyperlink{classImageProcessing_aa0879ca32fc15e72d781723eb33de32e}{getgaussian\+SigmaX} (void)
+\begin{DoxyCompactList}\small\item\em Function to get standard deviation in X for gaussian blur. \end{DoxyCompactList}\item 
+double \hyperlink{classImageProcessing_a597f35362caec714d90e6a23be0db39c}{getgaussian\+SigmaY} (void)
+\begin{DoxyCompactList}\small\item\em Function to get standard deviation in Y for gaussian blur. \end{DoxyCompactList}\item 
+cv\+::\+Scalar \hyperlink{classImageProcessing_a08af88927411e7184e2efcebbf00ebf6}{get\+Min\+Thresh\+H\+LS} (void)
+\begin{DoxyCompactList}\small\item\em Function to get H\+SL color space minimum threshold value. \end{DoxyCompactList}\item 
+cv\+::\+Scalar \hyperlink{classImageProcessing_ab65db9a84fb0171397288951233511a2}{get\+Max\+Thresh\+H\+LS} (void)
+\begin{DoxyCompactList}\small\item\em Function to get H\+SL color space maximum threshold value. \end{DoxyCompactList}\item 
+cv\+::\+Scalar \hyperlink{classImageProcessing_a2ab2c6cc172c0d5bfed2123920b1fbec}{get\+Min\+Thresh\+B\+GR} (void)
+\begin{DoxyCompactList}\small\item\em Function to get R\+GB color space minimum threshold value. \end{DoxyCompactList}\item 
+cv\+::\+Scalar \hyperlink{classImageProcessing_a875d8972cdad191dc712f806d3795bae}{get\+Max\+Thresh\+B\+GR} (void)
+\begin{DoxyCompactList}\small\item\em Function to get R\+GB color space maximum threshold value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Image\+Processing@{Image\+Processing}!Image\+Processing@{Image\+Processing}}
+\index{Image\+Processing@{Image\+Processing}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{Image\+Processing()}{ImageProcessing()}}]{\setlength{\rightskip}{0pt plus 5cm}Image\+Processing\+::\+Image\+Processing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a0090ffe36a912d6df5d7a1f507f6252e}{}\label{classImageProcessing_a0090ffe36a912d6df5d7a1f507f6252e}
+
+
+Default constructor for Img\+Processing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!````~Image\+Processing@{$\sim$\+Image\+Processing}}
+\index{````~Image\+Processing@{$\sim$\+Image\+Processing}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{$\sim$\+Image\+Processing()}{~ImageProcessing()}}]{\setlength{\rightskip}{0pt plus 5cm}Image\+Processing\+::$\sim$\+Image\+Processing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classImageProcessing_a1d4bd00ec1862112552c663034cebabc}{}\label{classImageProcessing_a1d4bd00ec1862112552c663034cebabc}
+
+
+Default destructor for Img\+Processing. 
+
+Default destructor for \hyperlink{classImageProcessing}{Image\+Processing}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Image\+Processing@{Image\+Processing}!get\+Binary\+Img@{get\+Binary\+Img}}
+\index{get\+Binary\+Img@{get\+Binary\+Img}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Binary\+Img(cv\+::\+Mat \&src, cv\+::\+Mat \&dst)}{getBinaryImg(cv::Mat &src, cv::Mat &dst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::get\+Binary\+Img (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat \&}]{src, }
+\item[{cv\+::\+Mat \&}]{dst}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_ab4520086fa3735882552ab376f94a9f8}{}\label{classImageProcessing_ab4520086fa3735882552ab376f94a9f8}
+
+
+Function to get a binary image after color thresholding and edge detection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em masked} & image of type cv\+::\+Mat \\
+\hline
+{\em binary} & image of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!get\+Dist\+Coeffs@{get\+Dist\+Coeffs}}
+\index{get\+Dist\+Coeffs@{get\+Dist\+Coeffs}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Dist\+Coeffs(void)}{getDistCoeffs(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Image\+Processing\+::get\+Dist\+Coeffs (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a07b25ad0e2f707d451dd2cd905739c6d}{}\label{classImageProcessing_a07b25ad0e2f707d451dd2cd905739c6d}
+
+
+Function to get camera distortion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+distortion parameter k1 of type double distortion parameter k2 of type double distortion parameter p1 of type double distortion parameter p2 of type double distortion parameter k3 of type double 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!getgaussian\+SigmaX@{getgaussian\+SigmaX}}
+\index{getgaussian\+SigmaX@{getgaussian\+SigmaX}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{getgaussian\+Sigma\+X(void)}{getgaussianSigmaX(void)}}]{\setlength{\rightskip}{0pt plus 5cm}double Image\+Processing\+::getgaussian\+SigmaX (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_aa0879ca32fc15e72d781723eb33de32e}{}\label{classImageProcessing_aa0879ca32fc15e72d781723eb33de32e}
+
+
+Function to get standard deviation in X for gaussian blur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+standard deviation in X for gaussian blur 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!getgaussian\+SigmaY@{getgaussian\+SigmaY}}
+\index{getgaussian\+SigmaY@{getgaussian\+SigmaY}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{getgaussian\+Sigma\+Y(void)}{getgaussianSigmaY(void)}}]{\setlength{\rightskip}{0pt plus 5cm}double Image\+Processing\+::getgaussian\+SigmaY (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a597f35362caec714d90e6a23be0db39c}{}\label{classImageProcessing_a597f35362caec714d90e6a23be0db39c}
+
+
+Function to get standard deviation in Y for gaussian blur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+standard deviation in Y for gaussian blur 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!get\+Intrinsic@{get\+Intrinsic}}
+\index{get\+Intrinsic@{get\+Intrinsic}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Intrinsic(void)}{getIntrinsic(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Image\+Processing\+::get\+Intrinsic (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a3f38ff39191c4bec62e5ce03b5e72423}{}\label{classImageProcessing_a3f38ff39191c4bec62e5ce03b5e72423}
+
+
+Function to get camera matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+fx, the x component of focal length of type double fy, the y component of focal length of type double cx, the x coordinate of camera center of type double cy, the y coordinate of camera center of type double 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!get\+Max\+Thresh\+B\+GR@{get\+Max\+Thresh\+B\+GR}}
+\index{get\+Max\+Thresh\+B\+GR@{get\+Max\+Thresh\+B\+GR}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Max\+Thresh\+B\+G\+R(void)}{getMaxThreshBGR(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Scalar Image\+Processing\+::get\+Max\+Thresh\+B\+GR (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a875d8972cdad191dc712f806d3795bae}{}\label{classImageProcessing_a875d8972cdad191dc712f806d3795bae}
+
+
+Function to get R\+GB color space maximum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum threshold values for red,green and blue, type cv\+::\+Vec$<$double, 3$>$ 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!get\+Max\+Thresh\+H\+LS@{get\+Max\+Thresh\+H\+LS}}
+\index{get\+Max\+Thresh\+H\+LS@{get\+Max\+Thresh\+H\+LS}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Max\+Thresh\+H\+L\+S(void)}{getMaxThreshHLS(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Scalar Image\+Processing\+::get\+Max\+Thresh\+H\+LS (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_ab65db9a84fb0171397288951233511a2}{}\label{classImageProcessing_ab65db9a84fb0171397288951233511a2}
+
+
+Function to get H\+SL color space maximum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+maximum threshold values for hue,saturation and luminousness, type cv\+::\+Vec$<$double, 3$>$ 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!get\+Min\+Thresh\+B\+GR@{get\+Min\+Thresh\+B\+GR}}
+\index{get\+Min\+Thresh\+B\+GR@{get\+Min\+Thresh\+B\+GR}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Min\+Thresh\+B\+G\+R(void)}{getMinThreshBGR(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Scalar Image\+Processing\+::get\+Min\+Thresh\+B\+GR (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a2ab2c6cc172c0d5bfed2123920b1fbec}{}\label{classImageProcessing_a2ab2c6cc172c0d5bfed2123920b1fbec}
+
+
+Function to get R\+GB color space minimum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+minimum threshold values for red,green and blue, type cv\+::\+Vec$<$double, 3$>$ 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!get\+Min\+Thresh\+H\+LS@{get\+Min\+Thresh\+H\+LS}}
+\index{get\+Min\+Thresh\+H\+LS@{get\+Min\+Thresh\+H\+LS}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{get\+Min\+Thresh\+H\+L\+S(void)}{getMinThreshHLS(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Scalar Image\+Processing\+::get\+Min\+Thresh\+H\+LS (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a08af88927411e7184e2efcebbf00ebf6}{}\label{classImageProcessing_a08af88927411e7184e2efcebbf00ebf6}
+
+
+Function to get H\+SL color space minimum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+minimum threshold values for hue,saturation and luminousness, type cv\+::\+Vec$<$double, 3$>$
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+minimum threshold values for hue,saturation and luminousness, type cv\+::\+Vec$<$double, 3$>$ Function to get H\+SL color space minimum threshold value
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+minimum threshold values for hue,saturation and luminousness, type cv\+::\+Vec$<$double, 3$>$ 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!pre\+Processing@{pre\+Processing}}
+\index{pre\+Processing@{pre\+Processing}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{pre\+Processing(cv\+::\+Mat \&src, cv\+::\+Mat \&dst)}{preProcessing(cv::Mat &src, cv::Mat &dst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::pre\+Processing (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat \&}]{src, }
+\item[{cv\+::\+Mat \&}]{dst}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a72562595d5ec6974d5e4a715ac2c3f83}{}\label{classImageProcessing_a72562595d5ec6974d5e4a715ac2c3f83}
+
+
+Function to pre-\/process the input image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & image of type cv\+::\+Mat \\
+\hline
+{\em processed} & image of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!prespective\+Transform@{prespective\+Transform}}
+\index{prespective\+Transform@{prespective\+Transform}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{prespective\+Transform(cv\+::\+Mat \&src, cv\+::\+Mat \&dst, cv\+::\+Mat \&\+T\+\_\+perspective\+\_\+inv)}{prespectiveTransform(cv::Mat &src, cv::Mat &dst, cv::Mat &T_perspective_inv)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::prespective\+Transform (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat \&}]{src, }
+\item[{cv\+::\+Mat \&}]{dst, }
+\item[{cv\+::\+Mat \&}]{T\+\_\+perspective\+\_\+inv}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_aec91adad633adbbb0f0c0dc7fc595655}{}\label{classImageProcessing_aec91adad633adbbb0f0c0dc7fc595655}
+
+
+Function to perform prospective transform. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em binary} & image of type cv\+::\+Mat \\
+\hline
+{\em bird\textquotesingle{}s} & view image of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!set\+Dist\+Coeffs@{set\+Dist\+Coeffs}}
+\index{set\+Dist\+Coeffs@{set\+Dist\+Coeffs}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{set\+Dist\+Coeffs(double k1\+\_\+, double k2\+\_\+, double p1\+\_\+, double p2\+\_\+, double k3\+\_\+)}{setDistCoeffs(double k1_, double k2_, double p1_, double p2_, double k3_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::set\+Dist\+Coeffs (
+\begin{DoxyParamCaption}
+\item[{double}]{k1\+\_\+, }
+\item[{double}]{k2\+\_\+, }
+\item[{double}]{p1\+\_\+, }
+\item[{double}]{p2\+\_\+, }
+\item[{double}]{k3\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a669c1fa1566fec74c944d8a74933bb8f}{}\label{classImageProcessing_a669c1fa1566fec74c944d8a74933bb8f}
+
+
+Function to set camera distortion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em distortion} & parameter k1 of type double \\
+\hline
+{\em distortion} & parameter k2 of type double \\
+\hline
+{\em distortion} & parameter p1 of type double \\
+\hline
+{\em distortion} & parameter p2 of type double \\
+\hline
+{\em distortion} & parameter k3 of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!setgaussian\+SigmaX@{setgaussian\+SigmaX}}
+\index{setgaussian\+SigmaX@{setgaussian\+SigmaX}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{setgaussian\+Sigma\+X(double gaussian\+Sigma\+X\+\_\+)}{setgaussianSigmaX(double gaussianSigmaX_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::setgaussian\+SigmaX (
+\begin{DoxyParamCaption}
+\item[{double}]{gaussian\+Sigma\+X\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_ade164d66f0f51ab799dbc949c03a7b57}{}\label{classImageProcessing_ade164d66f0f51ab799dbc949c03a7b57}
+
+
+Function to set standard deviation in X for gaussian blur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em standard} & deviation in X for gaussian blur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!setgaussian\+SigmaY@{setgaussian\+SigmaY}}
+\index{setgaussian\+SigmaY@{setgaussian\+SigmaY}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{setgaussian\+Sigma\+Y(double gaussian\+Sigma\+Y\+\_\+)}{setgaussianSigmaY(double gaussianSigmaY_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::setgaussian\+SigmaY (
+\begin{DoxyParamCaption}
+\item[{double}]{gaussian\+Sigma\+Y\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a4854cd009bb4ad04ab69e1ea701b71c8}{}\label{classImageProcessing_a4854cd009bb4ad04ab69e1ea701b71c8}
+
+
+Function to set standard deviation in Y for gaussian blur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em standard} & deviation in Y for gaussian blur \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!set\+Intrinsic@{set\+Intrinsic}}
+\index{set\+Intrinsic@{set\+Intrinsic}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{set\+Intrinsic(double fx\+\_\+, double fy\+\_\+, double cx\+\_\+, double cy\+\_\+)}{setIntrinsic(double fx_, double fy_, double cx_, double cy_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::set\+Intrinsic (
+\begin{DoxyParamCaption}
+\item[{double}]{fx\+\_\+, }
+\item[{double}]{fy\+\_\+, }
+\item[{double}]{cx\+\_\+, }
+\item[{double}]{cy\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a0432eb5bac73ebc2d81442577f0466ef}{}\label{classImageProcessing_a0432eb5bac73ebc2d81442577f0466ef}
+
+
+Function to set camera matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fx,the} & x component of focal length of type double \\
+\hline
+{\em fy,the} & y component of focal length of type double \\
+\hline
+{\em cx,the} & x coordinate of camera center of type double \\
+\hline
+{\em cy,the} & y coordinate of camera center of type double \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!set\+Max\+Thresh\+B\+GR@{set\+Max\+Thresh\+B\+GR}}
+\index{set\+Max\+Thresh\+B\+GR@{set\+Max\+Thresh\+B\+GR}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{set\+Max\+Thresh\+B\+G\+R(cv\+::\+Scalar max\+Thresh\+B\+G\+R\+\_\+)}{setMaxThreshBGR(cv::Scalar maxThreshBGR_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::set\+Max\+Thresh\+B\+GR (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Scalar}]{max\+Thresh\+B\+G\+R\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_ac11c15a2cbdbf71c6d6b1f10a768e4c2}{}\label{classImageProcessing_ac11c15a2cbdbf71c6d6b1f10a768e4c2}
+
+
+Function to set R\+GB color space maximum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em maximum} & threshold values for red,green and blue, type cv\+::\+Vec$<$double, 3$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!set\+Max\+Thresh\+H\+LS@{set\+Max\+Thresh\+H\+LS}}
+\index{set\+Max\+Thresh\+H\+LS@{set\+Max\+Thresh\+H\+LS}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{set\+Max\+Thresh\+H\+L\+S(cv\+::\+Scalar max\+Thresh\+H\+S\+L\+\_\+)}{setMaxThreshHLS(cv::Scalar maxThreshHSL_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::set\+Max\+Thresh\+H\+LS (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Scalar}]{max\+Thresh\+H\+L\+S\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a2595139a92ad3de27bcaab4a09d95ceb}{}\label{classImageProcessing_a2595139a92ad3de27bcaab4a09d95ceb}
+
+
+Function to set H\+SL color space maximum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em maximum} & threshold values for hue,saturation and luminousness, type cv\+::\+Vec$<$double, 3$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!set\+Min\+Thresh\+B\+GR@{set\+Min\+Thresh\+B\+GR}}
+\index{set\+Min\+Thresh\+B\+GR@{set\+Min\+Thresh\+B\+GR}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{set\+Min\+Thresh\+B\+G\+R(cv\+::\+Scalar min\+Thresh\+B\+G\+R\+\_\+)}{setMinThreshBGR(cv::Scalar minThreshBGR_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::set\+Min\+Thresh\+B\+GR (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Scalar}]{min\+Thresh\+B\+G\+R\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a64b3a68e766210db6d7e6130d161acb6}{}\label{classImageProcessing_a64b3a68e766210db6d7e6130d161acb6}
+
+
+Function to set R\+GB color space minimum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minimum} & threshold values for red,green and blue, type cv\+::\+Vec$<$double, 3$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Image\+Processing@{Image\+Processing}!set\+Min\+Thresh\+H\+LS@{set\+Min\+Thresh\+H\+LS}}
+\index{set\+Min\+Thresh\+H\+LS@{set\+Min\+Thresh\+H\+LS}!Image\+Processing@{Image\+Processing}}
+\subsubsection[{\texorpdfstring{set\+Min\+Thresh\+H\+L\+S(cv\+::\+Scalar min\+Thresh\+H\+S\+L\+\_\+)}{setMinThreshHLS(cv::Scalar minThreshHSL_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Image\+Processing\+::set\+Min\+Thresh\+H\+LS (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Scalar}]{min\+Thresh\+H\+L\+S\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classImageProcessing_a748f92280f1a0773a56970b787a71682}{}\label{classImageProcessing_a748f92280f1a0773a56970b787a71682}
+
+
+Function to set H\+SL color space minimum threshold value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minimum} & threshold values for hue,saturation and luminousness, type cv\+::\+Vec$<$double, 3$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/akash/\+Lane\+Detection\+\_\+master/\+Lane\+Detection\+System/include/\hyperlink{ImageProcessing_8hpp}{Image\+Processing.\+hpp}\item 
+/home/akash/\+Lane\+Detection\+\_\+master/\+Lane\+Detection\+System/app/\hyperlink{ImageProcessing_8cpp}{Image\+Processing.\+cpp}\end{DoxyCompactItemize}

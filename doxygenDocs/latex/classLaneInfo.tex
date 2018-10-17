@@ -1,0 +1,185 @@
+\hypertarget{classLaneInfo}{}\section{Lane\+Info Class Reference}
+\label{classLaneInfo}\index{Lane\+Info@{Lane\+Info}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLaneInfo_ae4456324bd7c15c1848d0dd6dea53b4d}{Lane\+Info} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \hyperlink{classLaneDetection}{Lane\+Detection}. \end{DoxyCompactList}\item 
+\hyperlink{classLaneInfo_a9dd2b4e25bd67b27c65b54aced06cee4}{$\sim$\+Lane\+Info} ()
+\begin{DoxyCompactList}\small\item\em Default destructor for \hyperlink{classLaneDetection}{Lane\+Detection}. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneInfo_a39946db06ad80f1b5f1a94f8fe81393e}{set\+Lane\+Points} (std\+::vector$<$ cv\+::\+Point $>$ lane\+Points)
+\begin{DoxyCompactList}\small\item\em Function to set lane\+Points. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneInfo_a1ae9fe2b711ae9dfbf9f3d167254a844}{set\+Lane\+Coeffs} (cv\+::\+Mat lane\+Coeffs)
+\begin{DoxyCompactList}\small\item\em Function to set lane\+Coeffs. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneInfo_a1e362dd10c9c25eaa74f45f3eec47fdd}{set\+Lane\+Color} (cv\+::\+Vec3b lane\+Color)
+\begin{DoxyCompactList}\small\item\em Function to set lane\+Color. \end{DoxyCompactList}\item 
+std\+::vector$<$ cv\+::\+Point $>$ \hyperlink{classLaneInfo_a548666413272e1a4bb09950ba15fb48b}{get\+Lane\+Points} (void)
+\begin{DoxyCompactList}\small\item\em Function to get lane\+Points. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{classLaneInfo_a1796822568a6ca00a291cff150ef607e}{get\+Lane\+Coeffs} (void)
+\begin{DoxyCompactList}\small\item\em Function to get lane\+Coeffs. \end{DoxyCompactList}\item 
+cv\+::\+Vec3b \hyperlink{classLaneInfo_a83d541beb6728ae03551293b659c6c9d}{get\+Lane\+Color} (void)
+\begin{DoxyCompactList}\small\item\em Function to get lane\+Color. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Lane\+Info@{Lane\+Info}!Lane\+Info@{Lane\+Info}}
+\index{Lane\+Info@{Lane\+Info}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{Lane\+Info()}{LaneInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}Lane\+Info\+::\+Lane\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_ae4456324bd7c15c1848d0dd6dea53b4d}{}\label{classLaneInfo_ae4456324bd7c15c1848d0dd6dea53b4d}
+
+
+Default constructor for \hyperlink{classLaneDetection}{Lane\+Detection}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Info@{Lane\+Info}!````~Lane\+Info@{$\sim$\+Lane\+Info}}
+\index{````~Lane\+Info@{$\sim$\+Lane\+Info}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{$\sim$\+Lane\+Info()}{~LaneInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}Lane\+Info\+::$\sim$\+Lane\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a9dd2b4e25bd67b27c65b54aced06cee4}{}\label{classLaneInfo_a9dd2b4e25bd67b27c65b54aced06cee4}
+
+
+Default destructor for \hyperlink{classLaneDetection}{Lane\+Detection}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\index{Lane\+Info@{Lane\+Info}!get\+Lane\+Coeffs@{get\+Lane\+Coeffs}}
+\index{get\+Lane\+Coeffs@{get\+Lane\+Coeffs}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{get\+Lane\+Coeffs(void)}{getLaneCoeffs(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Lane\+Info\+::get\+Lane\+Coeffs (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a1796822568a6ca00a291cff150ef607e}{}\label{classLaneInfo_a1796822568a6ca00a291cff150ef607e}
+
+
+Function to get lane\+Coeffs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lane coefficients of type cv\+::\+Mat 
+\end{DoxyReturn}
+\index{Lane\+Info@{Lane\+Info}!get\+Lane\+Color@{get\+Lane\+Color}}
+\index{get\+Lane\+Color@{get\+Lane\+Color}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{get\+Lane\+Color(void)}{getLaneColor(void)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Vec3b Lane\+Info\+::get\+Lane\+Color (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a83d541beb6728ae03551293b659c6c9d}{}\label{classLaneInfo_a83d541beb6728ae03551293b659c6c9d}
+
+
+Function to get lane\+Color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lane color of type cv\+::\+Vec3b 
+\end{DoxyReturn}
+\index{Lane\+Info@{Lane\+Info}!get\+Lane\+Points@{get\+Lane\+Points}}
+\index{get\+Lane\+Points@{get\+Lane\+Points}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{get\+Lane\+Points(void)}{getLanePoints(void)}}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ cv\+::\+Point $>$ Lane\+Info\+::get\+Lane\+Points (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a548666413272e1a4bb09950ba15fb48b}{}\label{classLaneInfo_a548666413272e1a4bb09950ba15fb48b}
+
+
+Function to get lane\+Points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+set of lane pixels of type std\+::vector$<$cv\+::\+Point$>$ 
+\end{DoxyReturn}
+\index{Lane\+Info@{Lane\+Info}!set\+Lane\+Coeffs@{set\+Lane\+Coeffs}}
+\index{set\+Lane\+Coeffs@{set\+Lane\+Coeffs}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{set\+Lane\+Coeffs(cv\+::\+Mat lane\+Coeffs)}{setLaneCoeffs(cv::Mat laneCoeffs)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Info\+::set\+Lane\+Coeffs (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{lane\+Coeffs}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a1ae9fe2b711ae9dfbf9f3d167254a844}{}\label{classLaneInfo_a1ae9fe2b711ae9dfbf9f3d167254a844}
+
+
+Function to set lane\+Coeffs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lane} & coefficients of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Info@{Lane\+Info}!set\+Lane\+Color@{set\+Lane\+Color}}
+\index{set\+Lane\+Color@{set\+Lane\+Color}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{set\+Lane\+Color(cv\+::\+Vec3b lane\+Color)}{setLaneColor(cv::Vec3b laneColor)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Info\+::set\+Lane\+Color (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Vec3b}]{lane\+Color}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a1e362dd10c9c25eaa74f45f3eec47fdd}{}\label{classLaneInfo_a1e362dd10c9c25eaa74f45f3eec47fdd}
+
+
+Function to set lane\+Color. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lane} & color of type cv\+::\+Vec3b \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Info@{Lane\+Info}!set\+Lane\+Points@{set\+Lane\+Points}}
+\index{set\+Lane\+Points@{set\+Lane\+Points}!Lane\+Info@{Lane\+Info}}
+\subsubsection[{\texorpdfstring{set\+Lane\+Points(std\+::vector$<$ cv\+::\+Point $>$ lane\+Points)}{setLanePoints(std::vector< cv::Point > lanePoints)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Info\+::set\+Lane\+Points (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ cv\+::\+Point $>$}]{lane\+Points}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneInfo_a39946db06ad80f1b5f1a94f8fe81393e}{}\label{classLaneInfo_a39946db06ad80f1b5f1a94f8fe81393e}
+
+
+Function to set lane\+Points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em set} & of lane pixels of type std\+::vector$<$cv\+::\+Point$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/akash/\+Lane\+Detection\+\_\+master/\+Lane\+Detection\+System/include/Lane\+Info.\+hpp\item 
+/home/akash/\+Lane\+Detection\+\_\+master/\+Lane\+Detection\+System/app/Lane\+Info.\+cpp\end{DoxyCompactItemize}

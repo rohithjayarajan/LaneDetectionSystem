@@ -1,0 +1,263 @@
+\hypertarget{classLaneDetection}{}\section{Lane\+Detection Class Reference}
+\label{classLaneDetection}\index{Lane\+Detection@{Lane\+Detection}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLaneDetection_a731f54ebd16a6ad77ff51e413415d1d9}{Lane\+Detection} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \hyperlink{classLaneDetection}{Lane\+Detection}. \end{DoxyCompactList}\item 
+\hyperlink{classLaneDetection_afdccabf18bc0137fafb973624e8c3df3}{$\sim$\+Lane\+Detection} ()
+\begin{DoxyCompactList}\small\item\em Default destructor for \hyperlink{classLaneDetection}{Lane\+Detection}. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneDetection_a543e9a9346892343830f0641613e330a}{generate\+Hist} (cv\+::\+Mat \&src, std\+::vector$<$ double $>$ \&hist)
+\begin{DoxyCompactList}\small\item\em Function to generate lane pixel histogram. \end{DoxyCompactList}\item 
+int \hyperlink{classLaneDetection_a3291cc176ecd5d81cb0e778741c7bad7}{average\+Window\+Center} (int \&x\+Val)
+\begin{DoxyCompactList}\small\item\em Function to get average of window center. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneDetection_accd042559d371231d11544b341b2fa66}{extract\+Lane} (cv\+::\+Mat \&perspective\+Img, std\+::vector$<$ double $>$ \&hist, std\+::vector$<$ cv\+::\+Point $>$ \&dst\+Lane, std\+::string lane\+Type, cv\+::\+Mat \&draw\+Window)
+\begin{DoxyCompactList}\small\item\em Function to extract left or right lane. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneDetection_aafdb4913fa1ce44bd272c7c6c82b7885}{fit\+Poly} (std\+::vector$<$ cv\+::\+Point $>$ \&lane\+LR, cv\+::\+Mat \&dst\+Lane\+Parameters, int order)
+\begin{DoxyCompactList}\small\item\em Function to fit a polynomial on the received lane pixel data. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneDetection_a222e9cc724b5a9a7bc1ffbfd66bf77aa}{extract\+Central\+Line} (std\+::vector$<$ cv\+::\+Point $>$ \&left\+Lane\+Points, std\+::vector$<$ cv\+::\+Point $>$ \&central\+Line)
+\begin{DoxyCompactList}\small\item\em Function to extract central line. \end{DoxyCompactList}\item 
+double \hyperlink{classLaneDetection_af8a40b3f7afe04c2688bed7d7cd13319}{compute\+Turn\+Angle} (std\+::vector$<$ cv\+::\+Point $>$ \&left\+Line)
+\begin{DoxyCompactList}\small\item\em Function to compute turn angle for the lane. \end{DoxyCompactList}\item 
+void \hyperlink{classLaneDetection_a6c89cf64d45414120997d724bcf3a2a8}{detect\+Lanes} (void)
+\begin{DoxyCompactList}\small\item\em Function to implement the entire system pipeline. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Lane\+Detection@{Lane\+Detection}!Lane\+Detection@{Lane\+Detection}}
+\index{Lane\+Detection@{Lane\+Detection}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{Lane\+Detection()}{LaneDetection()}}]{\setlength{\rightskip}{0pt plus 5cm}Lane\+Detection\+::\+Lane\+Detection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_a731f54ebd16a6ad77ff51e413415d1d9}{}\label{classLaneDetection_a731f54ebd16a6ad77ff51e413415d1d9}
+
+
+Default constructor for \hyperlink{classLaneDetection}{Lane\+Detection}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!````~Lane\+Detection@{$\sim$\+Lane\+Detection}}
+\index{````~Lane\+Detection@{$\sim$\+Lane\+Detection}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{$\sim$\+Lane\+Detection()}{~LaneDetection()}}]{\setlength{\rightskip}{0pt plus 5cm}Lane\+Detection\+::$\sim$\+Lane\+Detection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_afdccabf18bc0137fafb973624e8c3df3}{}\label{classLaneDetection_afdccabf18bc0137fafb973624e8c3df3}
+
+
+Default destructor for \hyperlink{classLaneDetection}{Lane\+Detection}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Lane\+Detection@{Lane\+Detection}!average\+Window\+Center@{average\+Window\+Center}}
+\index{average\+Window\+Center@{average\+Window\+Center}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{average\+Window\+Center(int \&x\+Val)}{averageWindowCenter(int &xVal)}}]{\setlength{\rightskip}{0pt plus 5cm}int Lane\+Detection\+::average\+Window\+Center (
+\begin{DoxyParamCaption}
+\item[{int \&}]{x\+Val\+\_\+}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_a3291cc176ecd5d81cb0e778741c7bad7}{}\label{classLaneDetection_a3291cc176ecd5d81cb0e778741c7bad7}
+
+
+Function to get average of window center. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em histogram} & containing lane pixels of type cv\+::\+Mat \\
+\hline
+{\em pixel} & locations of left or right lane, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+{\em lane} & to be extracted -\/ left or right of type string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!compute\+Turn\+Angle@{compute\+Turn\+Angle}}
+\index{compute\+Turn\+Angle@{compute\+Turn\+Angle}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{compute\+Turn\+Angle(std\+::vector$<$ cv\+::\+Point $>$ \&left\+Line)}{computeTurnAngle(std::vector< cv::Point > &leftLine)}}]{\setlength{\rightskip}{0pt plus 5cm}double Lane\+Detection\+::compute\+Turn\+Angle (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{left\+Line}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_af8a40b3f7afe04c2688bed7d7cd13319}{}\label{classLaneDetection_af8a40b3f7afe04c2688bed7d7cd13319}
+
+
+Function to compute turn angle for the lane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & line pixel locations, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+turn angle, type double
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em central} & line pixel locations, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+radius of curvature, type double 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!detect\+Lanes@{detect\+Lanes}}
+\index{detect\+Lanes@{detect\+Lanes}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{detect\+Lanes(void)}{detectLanes(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Detection\+::detect\+Lanes (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_a6c89cf64d45414120997d724bcf3a2a8}{}\label{classLaneDetection_a6c89cf64d45414120997d724bcf3a2a8}
+
+
+Function to implement the entire system pipeline. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nothing} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!extract\+Central\+Line@{extract\+Central\+Line}}
+\index{extract\+Central\+Line@{extract\+Central\+Line}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{extract\+Central\+Line(std\+::vector$<$ cv\+::\+Point $>$ \&left\+Lane\+Points, std\+::vector$<$ cv\+::\+Point $>$ \&central\+Line)}{extractCentralLine(std::vector< cv::Point > &leftLanePoints, std::vector< cv::Point > &centralLine)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Detection\+::extract\+Central\+Line (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{left\+Lane\+Points, }
+\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{central\+Line}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_a222e9cc724b5a9a7bc1ffbfd66bf77aa}{}\label{classLaneDetection_a222e9cc724b5a9a7bc1ffbfd66bf77aa}
+
+
+Function to extract central line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & lane pixel locations, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+{\em right} & lane pixel locations, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+{\em central} & line pixel locations, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!extract\+Lane@{extract\+Lane}}
+\index{extract\+Lane@{extract\+Lane}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{extract\+Lane(cv\+::\+Mat \&perspective\+Img, std\+::vector$<$ double $>$ \&hist, std\+::vector$<$ cv\+::\+Point $>$ \&dst\+Lane, std\+::string lane\+Type, cv\+::\+Mat \&draw\+Window)}{extractLane(cv::Mat &perspectiveImg, std::vector< double > &hist, std::vector< cv::Point > &dstLane, std::string laneType, cv::Mat &drawWindow)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Detection\+::extract\+Lane (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat \&}]{perspective\+Img, }
+\item[{std\+::vector$<$ double $>$ \&}]{hist, }
+\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{dst\+Lane, }
+\item[{std\+::string}]{lane\+Type, }
+\item[{cv\+::\+Mat \&}]{draw\+Window}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_accd042559d371231d11544b341b2fa66}{}\label{classLaneDetection_accd042559d371231d11544b341b2fa66}
+
+
+Function to extract left or right lane. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em histogram} & containing lane pixels of type cv\+::\+Mat \\
+\hline
+{\em pixel} & locations of left or right lane, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+{\em lane} & to be extracted -\/ left or right of type string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!fit\+Poly@{fit\+Poly}}
+\index{fit\+Poly@{fit\+Poly}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{fit\+Poly(std\+::vector$<$ cv\+::\+Point $>$ \&lane\+L\+R, cv\+::\+Mat \&dst\+Lane\+Parameters, int order)}{fitPoly(std::vector< cv::Point > &laneLR, cv::Mat &dstLaneParameters, int order)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Detection\+::fit\+Poly (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ cv\+::\+Point $>$ \&}]{lane\+LR, }
+\item[{cv\+::\+Mat \&}]{dst\+Lane\+Parameters, }
+\item[{int}]{order}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_aafdb4913fa1ce44bd272c7c6c82b7885}{}\label{classLaneDetection_aafdb4913fa1ce44bd272c7c6c82b7885}
+
+
+Function to fit a polynomial on the received lane pixel data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & or right lane pixel locations, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+{\em pixel} & locations fitted to a particular polynomial, type std\+::vector$<$cv\+::\+Point\+\_\+$<$int$>$$>$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+\index{Lane\+Detection@{Lane\+Detection}!generate\+Hist@{generate\+Hist}}
+\index{generate\+Hist@{generate\+Hist}!Lane\+Detection@{Lane\+Detection}}
+\subsubsection[{\texorpdfstring{generate\+Hist(cv\+::\+Mat \&src, std\+::vector$<$ double $>$ \&hist)}{generateHist(cv::Mat &src, std::vector< double > &hist)}}]{\setlength{\rightskip}{0pt plus 5cm}void Lane\+Detection\+::generate\+Hist (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat \&}]{src, }
+\item[{std\+::vector$<$ double $>$ \&}]{hist}
+\end{DoxyParamCaption}
+)}\hypertarget{classLaneDetection_a543e9a9346892343830f0641613e330a}{}\label{classLaneDetection_a543e9a9346892343830f0641613e330a}
+
+
+Function to generate lane pixel histogram. 
+
+Function to undistort the input image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em projective} & transform of binary image of type cv\+::\+Mat \\
+\hline
+{\em histogram} & containing lane pixels of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em input} & image of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+undistorted input image of type cv\+::\+Mat Function to generate lane pixel histogram
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em projective} & transform of binary image of type cv\+::\+Mat \\
+\hline
+{\em histogram} & containing lane pixels of type cv\+::\+Mat \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+nothing 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/akash/\+Lane\+Detection\+\_\+master/\+Lane\+Detection\+System/include/\hyperlink{LaneDetection_8hpp}{Lane\+Detection.\+hpp}\item 
+/home/akash/\+Lane\+Detection\+\_\+master/\+Lane\+Detection\+System/app/\hyperlink{LaneDetection_8cpp}{Lane\+Detection.\+cpp}\end{DoxyCompactItemize}

@@ -22,12 +22,3 @@ class LaneDetectionTest : public ::testing::Test {
  protected:
   LaneDetection testObject;
 };
-
-/**
- *@brief Test to check radius of curvature of lanes
- */
-TEST_F(LaneDetectionTest, radiusOfCurveCheck) {
-  std::vector<cv::Point_<int>> temp;
-  EXPECT_EQ(0.0, testObject.computeRadiusOfCurve(temp));
-
-}

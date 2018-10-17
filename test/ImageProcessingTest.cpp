@@ -26,35 +26,11 @@ class ImageProcessingTest : public ::testing::Test {
 //  cv::Mat binaryImg;
 //  cv::Mat birdViewImg;
 };
-
-///**
-// *@brief Test to ensure validity of pre-processed image
-// */
-//TEST_F(ImageProcessingTest, preProcessCheck) {
-//
-//}
-///**
-// *@brief Test to ensure validity of binary thresholding
-// */
-//TEST_F(ImageProcessingTest, binaryThresholdCheck) {
-//
-//}
-///**
-// *@brief Test to ensure validity of prespective transformation
-// */
-//TEST_F(ImageProcessingTest, prespectiveTransformationCheck) {
-//
-//}
 /**
  *@brief Test to ensure intrinsic parameters are set
  */
 TEST_F(ImageProcessingTest, isIntrinsicSet) {
-//  std::vector<std::vector<double>> temp { { 1.0, 0.0, 2.0 }, { 0.0, 3.0, 4.0 },
-//      {
-//      0.0, 0.0, 1.0 } };
   testObject.setIntrinsic(1.0, 2.0, 3.0, 4.0);
-  //cv::Mat temp =
-  //    (cv::Mat_<double>(3, 3) << 6.0, 0.0, 2.0, 0.0, 3.0, 4.0, 0.0, 0.0, 1.0);
   cv::Mat gotIntrinsic = testObject.getIntrinsic();
   EXPECT_EQ(6.0, gotIntrinsic.at<double>(0, 0));
   EXPECT_EQ(2.0, gotIntrinsic.at<double>(0, 1));
@@ -65,9 +41,7 @@ TEST_F(ImageProcessingTest, isIntrinsicSet) {
  *@brief Test to ensure distortion coefficients are set
  */
 TEST_F(ImageProcessingTest, isDistortionCoefficientsSet) {
-//  std::vector<double> temp { 1.0, 2.0, 3.0, 4.0, 5.0 };
   testObject.setDistCoeffs(1.0, 2.0, 3.0, 4.0, 5.0);
-  //cv::Mat temp(1, 5, CV_8D, Scalar::all(0));
   cv::Mat gotDistCoeffs = testObject.getDistCoeffs();
   EXPECT_EQ(1.0, gotDistCoeffs.at<double>(0, 0));
   EXPECT_EQ(2.0, gotDistCoeffs.at<double>(0, 1));
@@ -94,7 +68,7 @@ TEST_F(ImageProcessingTest, isGaussianSigmaYSet) {
  *       are set
  */
 TEST_F(ImageProcessingTest, isHSLMinThresholdSet) {
-  cv::Vec<double, 3> tempHSLMin(1.0, 2.0, 3.0);
+  cv::Scalar tempHSLMin(1.0, 2.0, 3.0);
   testObject.setMinThreshHLS(tempHSLMin);
   EXPECT_EQ(tempHSLMin, testObject.getMinThreshHLS());
 }
@@ -103,7 +77,7 @@ TEST_F(ImageProcessingTest, isHSLMinThresholdSet) {
  *       are set
  */
 TEST_F(ImageProcessingTest, isHSLMaxThresholdSet) {
-  cv::Vec<double, 3> tempHSLMax(1.0, 2.0, 3.0);
+  cv::Scalar tempHSLMax(1.0, 2.0, 3.0);
   testObject.setMaxThreshHLS(tempHSLMax);
   EXPECT_EQ(tempHSLMax, testObject.getMaxThreshHLS());
 }
@@ -111,7 +85,7 @@ TEST_F(ImageProcessingTest, isHSLMaxThresholdSet) {
  *@brief Test to ensure minimum threshold values of red, green and blue are set
  */
 TEST_F(ImageProcessingTest, isBGRMinThresholdSet) {
-  cv::Vec<double, 3> tempBGRMin(1.0, 2.0, 3.0);
+  cv::Scalar tempBGRMin(1.0, 2.0, 3.0);
   testObject.setMinThreshBGR(tempBGRMin);
   EXPECT_EQ(tempBGRMin, testObject.getMinThreshBGR());
 }
@@ -119,7 +93,7 @@ TEST_F(ImageProcessingTest, isBGRMinThresholdSet) {
  *@brief Test to ensure maximum threshold values of red, green and blue are set
  */
 TEST_F(ImageProcessingTest, isBGRMaxThresholdSet) {
-  cv::Vec<double, 3> tempBGRMax(1.0, 2.0, 3.0);
+  cv::Scalar tempBGRMax(1.0, 2.0, 3.0);
   testObject.setMaxThreshBGR(tempBGRMax);
   EXPECT_EQ(tempBGRMax, testObject.getMaxThreshBGR());
 }

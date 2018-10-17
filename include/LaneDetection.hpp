@@ -45,14 +45,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <chrono>
-#include <thread>
 #include "opencv2/core/core.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include "LaneInfo.hpp"
 
 class LaneDetection {
  private:
@@ -138,7 +135,6 @@ class LaneDetection {
    *   @return nothing
    */
   void detectLanes(void);
-}
-  ;
+};
 
 #endif  // INCLUDE_LANEDETECTION_HPP_

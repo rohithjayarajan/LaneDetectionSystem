@@ -12,7 +12,7 @@
  *
  */
 #include <iostream>
-#include "LaneDetection.cpp"
+#include "LaneDetection.hpp"
 
 int main() {
   LaneDetection lanes;

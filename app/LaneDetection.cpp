@@ -41,8 +41,7 @@
  */
 
 #include "LaneDetection.hpp"
-#include "ImageProcessing.cpp"
-#include "LaneInfo.cpp"
+#include "ImageProcessing.hpp"
 
 /**
  *   @brief Default constructor for LaneDetection
@@ -97,8 +96,7 @@ int LaneDetection::averageWindowCenter(int& xVal_) {
   if (avgRightCenter.size() < windowBuffer) {
     // push element in the container
     avgRightCenter.push_back(xVal_);
-  }
-  else {
+  } else {
     // erase first four values of container
     avgRightCenter.erase(avgRightCenter.begin(), avgRightCenter.begin() + 3);
     avgRightCenter.push_back(xVal_);
@@ -128,7 +126,7 @@ void LaneDetection::extractLane(cv::Mat& perspectiveImg,
   perspectiveImg.copyTo(debug);
   // convert debug to color space BGR and save it in drawWindow
   cv::cvtColor(debug, drawWindow, cv::COLOR_GRAY2BGR);
-  //initialize midpoint of histogram
+  // initialize midpoint of histogram
   std::size_t const histMidPoint = hist.size() / 2;
   // get left half of histogram
   std::vector<double> histLeft(hist.begin(), hist.begin() + histMidPoint);
@@ -140,12 +138,12 @@ void LaneDetection::extractLane(cv::Mat& perspectiveImg,
       - histLeft.begin();
   int xValL = idxPeakL;  // initialize xValL to left histograms  peak
   int numWindowsL = 8;  // set the number of left lane sliding windows
-  //set the height of sliding window for left lane
+  // set the height of sliding window for left lane
   int heightWindowL = perspectiveImg.rows / numWindowsL;
-  //set the width of sliding window for left lane
+  // set the width of sliding window for left lane
   int widthWindowL = 2 * heightWindowL;
   int temp_xValL;  // temporary variable to hold new peak
-  //variable to update the height of sliding window from bottom of image
+  // variable to update the height of sliding window from bottom of image
   int var_heightWindowL = perspectiveImg.rows;
   std::vector<int> updated_xVal_listL;  // initialize list of updated peaks
   // algorithm to find the lane pixels using sliding window approach
@@ -166,7 +164,8 @@ void LaneDetection::extractLane(cv::Mat& perspectiveImg,
           drawWindow.at<cv::Vec3b>(cv::Point(x_iterL, y_iterL)) = cv::Vec3b(0,
                                                                             255,
                                                                             0);
-          // container to update the new x coordinate value for further processing
+          // container to update the new x coordinate value for
+          // further processing
           updated_xVal_listL.push_back(x_iterL);
           }
         }
@@ -192,12 +191,12 @@ void LaneDetection::extractLane(cv::Mat& perspectiveImg,
   int xValR = averageWindowCenter(idxPeakR);
   // set the number of left lane sliding windows
   int numWindowsR = 8;
-  //set the height of sliding window for left lane
+  // set the height of sliding window for left lane
   int heightWindowR = perspectiveImg.rows / numWindowsR;
-  //set the width of sliding window for left lane
+  // set the width of sliding window for left lane
   int widthWindowR = 2 * heightWindowR;
   int temp_xValR;  // temporary variable to hold new peak
-  //variable to update the height of sliding window from bottom of image
+  // variable to update the height of sliding window from bottom of image
   int var_heightWindowR = perspectiveImg.rows;
   std::vector<int> updated_xVal_listR;  // initialize list of updated peaks
   // algorithm to find the lane pixels using sliding window approach
@@ -248,8 +247,8 @@ void LaneDetection::fitPoly(std::vector<cv::Point>& laneLR,
   cv::Mat src_x = cv::Mat(laneLR.size(), 1, CV_32F);
   cv::Mat src_y = cv::Mat(laneLR.size(), 1, CV_32F);
   for (int iter = 0; iter < laneLR.size(); iter++) {
-    src_x.at<float>(iter, 0) = (float) laneLR[iter].x;
-    src_y.at<float>(iter, 0) = (float) laneLR[iter].y;
+    src_x.at<float>(iter, 0) = static_cast<float>(laneLR[iter].x);
+    src_y.at<float>(iter, 0) = static_cast<float>(laneLR[iter].y);
   }
   int npoints = src_x.checkVector(1);
   int nypoints = src_y.checkVector(1);
@@ -358,14 +357,14 @@ void LaneDetection::detectLanes(void) {
     }
 
     cv::imshow("Undistorted Frame", colorOutImage);
-    cv::waitKey(0);
+//    cv::waitKey(0);
 //    //    press ESC
 //    //    to exit
-    char c = (char) cv::waitKey(25);
-    if (c == 27)
-      break;
-//    if (cv::waitKey(30) >= 0)
+//    char c = (char) cv::waitKey(25);
+//    if (c == 27)
 //      break;
+    if (cv::waitKey(30) >= 0)
+      break;
   }
   cap.release();  // release video capture object
   cv::destroyAllWindows();  // destroy/close all frames

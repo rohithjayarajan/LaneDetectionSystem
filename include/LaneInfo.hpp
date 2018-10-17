@@ -56,6 +56,7 @@ class LaneInfo {
   std::vector<cv::Point> lanePoints;
   cv::Mat laneCoeffs;
   cv::Vec3b laneColor;
+
  public:
   /**
    *   @brief Default constructor for LaneDetection

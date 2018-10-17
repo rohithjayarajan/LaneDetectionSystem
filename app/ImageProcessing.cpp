@@ -106,9 +106,8 @@ void ImageProcessing::getBinaryImg(cv::Mat& src, cv::Mat& dst) {
   cv::inRange(HLSimg, minThreshHLS, maxThreshHLS, thresholdImg);
   std::vector<cv::Point> lanePoints;  // declare variable holder for points
                                       // of polygon in which lanes appear
-  cv::Mat laneMaskROI(src.size(), CV_8U, cv::Scalar(0));  // create laneMaskROI
-                                                          // with zeros image size
-                                                          // of src and binary type
+  // create laneMaskROI with zeros image size of src and binary type
+  cv::Mat laneMaskROI(src.size(), CV_8U, cv::Scalar(0));
   lanePoints.push_back(cv::Point(560, 429));  // points of vertex 1 of polygon
   lanePoints.push_back(cv::Point(690, 429));  // points of vertex 2 of polygon
   lanePoints.push_back(cv::Point(1155, 672));  // points of vertex 3 of polygon
@@ -129,8 +128,8 @@ void ImageProcessing::prespectiveTransform(cv::Mat& src, cv::Mat& dst,
                                            cv::Mat& T_perspective_inv) {
   cv::Point2f inputQuadrilateral[4];  // declare variable holder for vertices of
                                       // input polygon for perspective transform
-  cv::Point2f outputQuadrilateral[4];  // declare variable holder for vertices of
-                                       // output for perspective transform
+  cv::Point2f outputQuadrilateral[4];  // declare variable holder for vertices
+                                       // of output for perspective transform
   // initialize variable T_perspective
   cv::Mat T_perspective = cv::Mat::zeros(src.size(), src.type());
   // set variable T_perspective_inv to zeros

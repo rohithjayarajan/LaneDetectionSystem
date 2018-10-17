@@ -29,8 +29,10 @@ TEST_F(LaneInfoTest, isLaneCoefficientSet) {
   input.at<double>(0, 0) = 1.0;
   input.at<double>(0, 1) = 2.0;
   input.at<double>(0, 2) = 3.0;
-  testObject.setLaneCoeffs(input);  // setting coefficients through setLaneCoeffs
-  cv::Mat gotLaneCoefficients = testObject.getLaneCoeffs();  // getting lane coefficients
+  testObject.setLaneCoeffs(input);  // setting coefficients
+                                    // through setLaneCoeffs
+  // getting lane coefficients
+  cv::Mat gotLaneCoefficients = testObject.getLaneCoeffs();
   // applyinig the check conditions
   EXPECT_EQ(1.0, gotLaneCoefficients.at<double>(0, 0));
   EXPECT_EQ(2.0, gotLaneCoefficients.at<double>(0, 1));
